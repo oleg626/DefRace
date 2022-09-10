@@ -6,39 +6,37 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class FindRoomMenu : MonoBehaviourPunCallbacks
+public class FindRoomMenu : BaseMenu
 {
     [SerializeField] private Transform roomListContent;
     [SerializeField] private GameObject roomListItemPrefab;
 
+
     private List<RoomListItem> m_rooms = new List<RoomListItem>();
+
+    private void Start()
+    {
+        OnRoomListUpdate(IRoomListManager.m_roomList);
+    }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log("room list updated");
+        IRoomListManager.m_roomList = roomList;
+        Debug.Log("Room menu updated");
 
-        foreach (RoomInfo roomInfo in roomList)
+        foreach (RoomListItem room in m_rooms)
         {
-            if (roomInfo.RemovedFromList)
-            {
-                Debug.Log("Room " + roomInfo.Name + " is deleted");
-                int index = m_rooms.FindIndex(x => x.m_name == roomInfo.Name);
-                if (index != -1)
-                {
-                    Destroy(m_rooms[index].gameObject);
-                    m_rooms.RemoveAt(index);
-                }
-            }
-            else
-            {
-                Debug.Log("Room " + roomInfo.Name + " is added");
-                GameObject item = Instantiate(roomListItemPrefab, roomListContent);
-                if (item != null)
-                {
-                    m_rooms.Add(item.GetComponent<RoomListItem>());
-                    m_rooms[m_rooms.Count - 1].SetUp(roomInfo.Name);
+            Destroy(room.gameObject);
+        }
 
-                }
+        foreach (RoomInfo roomInfo in IRoomListManager.m_roomList)
+        {
+            Debug.Log("Room " + roomInfo.Name + " is added");
+            GameObject item = Instantiate(roomListItemPrefab, roomListContent);
+            if (item != null)
+            {
+                m_rooms.Add(item.GetComponent<RoomListItem>());
+                m_rooms[m_rooms.Count - 1].SetUp(roomInfo.Name);
             }
         }
     }

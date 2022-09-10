@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using TMPro;
+using Photon.Realtime;
 
-public class RoomMenu : MonoBehaviour
+public class RoomMenu : BaseMenu
 {
     [SerializeField] TMP_Text m_roomName;
     // Start is called before the first frame update

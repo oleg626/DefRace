@@ -7,22 +7,8 @@ using TMPro;
 using Photon.Realtime;
 using System.Linq;
 
-public class Launcher : MonoBehaviourPunCallbacks
-{
-	public static Launcher Instance;
-
-	[SerializeField] TMP_InputField roomNameInputField;
-	[SerializeField] TMP_Text errorText;
-	[SerializeField] TMP_Text roomNameText;
-	[SerializeField] Transform playerListContent;
-	[SerializeField] GameObject PlayerListItemPrefab;
-	[SerializeField] GameObject startGameButton;
-
-	void Awake()
-	{
-		Instance = this;
-	}
-
+public class Launcher : BaseMenu
+{ 
 	void Start()
 	{
 		Debug.Log("Connecting to Master");
@@ -49,6 +35,13 @@ public class Launcher : MonoBehaviourPunCallbacks
 		Debug.Log(PhotonNetwork.CurrentRoom.Name);
     }
 
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        base.OnJoinRandomFailed(returnCode, message);
+		Debug.Log(message);
+		SceneManager.LoadScene("MainMenuScene");
+    }
+
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         base.OnCreateRoomFailed(returnCode, message);
@@ -60,10 +53,5 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         base.OnLeftRoom();
 		SceneManager.LoadScene("MainMenuScene");
-    }
-
-	public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-		Debug.Log("Room list updated");
     }
 }
