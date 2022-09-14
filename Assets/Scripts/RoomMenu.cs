@@ -9,15 +9,20 @@ using Photon.Realtime;
 public class RoomMenu : BaseMenu
 {
     [SerializeField] TMP_Text m_roomName;
+    [SerializeField] GameObject m_startGameButton;
     // Start is called before the first frame update
     void Start()
     {
         m_roomName.SetText(PhotonNetwork.CurrentRoom.Name);
     }
 
+    void Update()
+    {
+        m_startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+    }
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        PhotonNetwork.LoadLevel(1);
     }
 
     public void LeaveRoom()
