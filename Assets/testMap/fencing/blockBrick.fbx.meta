@@ -1,36 +1,9 @@
 fileFormatVersion: 2
-guid: 7d94293818e631e479f0b71287106198
+guid: e399c75a4cc9af4438bd9458e5c481a3
 ModelImporter:
   serializedVersion: 22103
-  internalIDToNameTable:
-  - first:
-      74: -5907766014022832241
-    second: car9|car9Action
-  - first:
-      74: 5794053394671377876
-    second: car9|whell.005Action
-  - first:
-      74: 5173657494117989483
-    second: whell.005|car9Action
-  - first:
-      74: 7432934464381396941
-    second: whell.005|whell.005Action
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: backFarColor
-    second: {fileID: 2100000, guid: b0616508f8ea25740931901ebdee80fb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: baseColor
-    second: {fileID: 2100000, guid: 0796d3a1e2d027348ae0706874c6c673, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: sideFarColor
-    second: {fileID: 2100000, guid: 2a3765b15f2c13b458e63e4aaa1cc839, type: 2}
+  internalIDToNameTable: []
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
