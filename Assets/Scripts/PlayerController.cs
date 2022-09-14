@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
 	[SerializeField] GameObject cameraHolder;
 
-	[SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
-
 	[SerializeField] Item[] items;
 
 	int itemIndex;
@@ -22,8 +20,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
 	float verticalLookRotation;
 	bool grounded;
-	Vector3 smoothMoveVelocity;
-	Vector3 moveAmount;
 
 	Rigidbody rb;
 
@@ -95,7 +91,7 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
 		if (Input.GetMouseButtonDown(0))
 		{
-			items[itemIndex].Use();
+			//items[itemIndex].Use();
 		}
 
 		if (transform.position.y < -10f) // Die if you fall out of the world
@@ -111,11 +107,11 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 
 		itemIndex = _index;
 
-		items[itemIndex].itemGameObject.SetActive(true);
+		//items[itemIndex].itemGameObject.SetActive(true);
 
 		if (previousItemIndex != -1)
 		{
-			items[previousItemIndex].itemGameObject.SetActive(false);
+			//items[previousItemIndex].itemGameObject.SetActive(false);
 		}
 
 		previousItemIndex = itemIndex;
@@ -141,13 +137,6 @@ public class PlayerController : MonoBehaviourPunCallbacks, IDamageable
 		grounded = _grounded;
 	}
 
-	void FixedUpdate()
-	{
-		if (!PV.IsMine)
-			return;
-
-		rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
-	}
 
 	public void TakeDamage(float damage)
 	{
