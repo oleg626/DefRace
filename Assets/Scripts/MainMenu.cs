@@ -7,7 +7,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 
-public class MainMenu : MonoBehaviourPunCallbacks
+public class MainMenu : BaseMenu
 {
     [SerializeField] Button joinRandomRoomButton;
     public void Update()
@@ -30,10 +30,5 @@ public class MainMenu : MonoBehaviourPunCallbacks
         }
         PhotonNetwork.CreateRoom(roomName.text);
         SceneManager.LoadScene("LoadingMenuScene");
-    }
-
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        Debug.Log("Main menu Room list updated");
     }
 }
