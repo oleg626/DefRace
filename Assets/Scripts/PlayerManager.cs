@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
 
 	int kills;
 	int deaths;
+	static int players;
 
 	void Awake()
 	{
@@ -30,9 +31,9 @@ public class PlayerManager : MonoBehaviour
 	}
 
 	void CreateController()
-	{
+	{ 
 		//Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint();
-		controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "defCar"), Vector3.zero, Quaternion.identity, 0, new object[] { PV.ViewID });
+		controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "defCar"), new Vector3(10, 0, 4 * (PV.ViewID % 3) - 4), Quaternion.Euler(0, 90, 0), 0, new object[] { PV.ViewID });
 	}
 
 	public void Die()
